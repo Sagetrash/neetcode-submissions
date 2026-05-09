@@ -1,0 +1,17 @@
+import math
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        right = max(piles)
+        left = 1
+        res = right
+        while left<=right:
+            speed = (left+right)//2
+            total_time = 0
+            for pile in piles:
+                total_time+= math.ceil(pile/speed)
+            if total_time <= h:
+                res = speed
+                right = speed-1
+            else:
+                left = speed+1
+        return res
